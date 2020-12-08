@@ -1,21 +1,28 @@
 function project_2_Conor_Luppnow
+% This program plots a T - x - y diagram of a methanol(1) / water (2)
+% mixture. Two different models are used: Raoult's Law and the Wilson 
+% Activity Coefficient Model. The results are compared with experimental
+% data reported by Soujanaya et al (2010). An iterative solution procedure
+% is used to calculated values for the two models. 
 clc; clear;
+% set up variables for later use
 P = 42.66; %kPa
 P_bar = 0.4266;
 
 R = 8.314;
 
-%%
 x1 = 0:0.05:1;
 x2 = 1 - x1;
 
 T_init = 350;
 epsilon = 0.0001;
 
+% values for the Antoine equation
 A_met = 11.9673; B_met = 3626.55; C_met = -34.29;
 A_water = 11.6834; B_water = 3816.44; C_water = -46.13;
 
-%% Raoult Law
+%% Raoult's Law
+% iterative procerdure for Raoult's Law. 
 for i = 1:numel(x1)
     y_tot_R(i) = 2;
     T_R(i) = T_init;
@@ -69,13 +76,13 @@ end
 plot(x1,T_R,'--b',y1_R,T_R,'--r'); hold on;
 
 %% Wilson
+% iterative procerdure for Wilson Activity Coefficient Model. 
 
-% Using values given for lamdba
 
-%lambda_12 = -1.4636e+03 and lambda_21 = 2.8397e+03;
+%lambda_12 = -1.4636e+03 and lambda_21 = 2.8397e+03; (From project 1)
 
 l_12 = -1.4636e+03; l_21 = 2.8397e+03;
-v1 = 41.489; v2 = 18.156;
+v1 = 41.489; v2 = 18.156; %(From project 1)
 
 
 for k = 1:numel(x1)
@@ -150,7 +157,7 @@ end
 plot(x1,T_W,'-b',y1_W,T_W,'-r'); hold on; grid on;
 
 %% Soujanaya et al (2010)
-
+% Experimental data used to compare results.
 x1_S = 0:0.1:1;
 y1_S = [0 0.41357 0.598483 0.702982 0.77136 0.821163 0.861004 0.89567 0.928488 0.962243 1];
 T_S = [350.6 340.4 334.3 330.15 327.1 324.8 322.9 321.3 319.85 318.5 317.15];
