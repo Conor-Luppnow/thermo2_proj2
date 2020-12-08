@@ -154,3 +154,17 @@ for k = 1:numel(x1)
 end
 
 plot(x1,T_W,'-b',y1_W,T_W,'-r'); hold on; grid on;
+
+%% Soujanaya et al (2010)
+
+x1_S = 0:0.1:1;
+y1_S = [0 0.41357 0.598483 0.702982 0.77136 0.821163 0.861004 0.89567 0.928488 0.962243 1];
+T_S = [350.6 340.4 334.3 330.15 327.1 324.8 322.9 321.3 319.85 318.5 317.15];
+
+plot(x1_S,T_S,'db',y1_S,T_S,'dr');hold on;
+
+xlabel('x_1,y_1');
+ylabel('T [K]');
+
+legend('Raoult’s','Wilson','Soujanaya');
+
